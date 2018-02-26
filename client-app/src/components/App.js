@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 
 class App extends Component {
   render() {
-    return <div>{this.props.appName}</div>;
+    return <Home />;
   }
 }
 
