@@ -3,11 +3,21 @@ import { connect } from "react-redux";
 import MainView from "./MainView";
 import Banner from "./Banner";
 
+import services from "../../services";
+
 const mapStateToProps = state => ({
-  appName: state.appName
+  appName: state.appName,
+  articles: state.articles
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLoad: payload => dispatch({ type: "HOME_PAGE_LOADED", payload })
 });
 
 class Home extends Component {
+  componentDidMount() {
+    this.props.onLoad(services.Articles.all());
+  }
   render() {
     return (
       <div className="home-page">
@@ -27,4 +37,4 @@ class Home extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
