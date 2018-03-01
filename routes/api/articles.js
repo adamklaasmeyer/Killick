@@ -7,7 +7,7 @@ router.get("/", function(req, res, next) {
   // get the results
   //and send them back
   //db.getCollection('articles').find({})
-  Article.find({})
+  Article.find()
     .limit(5)
     .exec()
     .then(results => {
