@@ -14,7 +14,7 @@ require("dotenv").config();
 
 var app = express();
 
-//connect to our database monogo
+//connect to our database mongoDB
 if (isProduction) {
   mongoose.connect(process.env.MONGODB_URI);
 } else {
