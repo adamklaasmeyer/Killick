@@ -2,6 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import services from "../services";
 
+import ListErrors from "./ListErrors";
+
+const mapStateToProps = state => ({ ...state.auth });
 const mapDispatchToProps = dispatch => ({
   onSubmit: (email, password) =>
     dispatch({ type: "LOGIN", payload: services.Auth.login(email, password) })
@@ -35,7 +38,7 @@ class Login extends React.Component {
               <p className="text-xs-center">
                 <a>Need an account?</a>
               </p>
-
+              <ListErrors errors={this.props.errors} />
               <form onSubmit={this.handleOnSubmit}>
                 <fieldset>
                   <fieldset className="form-group">
@@ -61,6 +64,7 @@ class Login extends React.Component {
                   <button
                     className="btn btn-lg btn-primary pull-xs-right"
                     type="submit"
+                    disabled={this.props.inProgress}
                   >
                     Sign in
                   </button>
@@ -74,4 +78,4 @@ class Login extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

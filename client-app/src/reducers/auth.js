@@ -1,11 +1,11 @@
 export default (state = {}, action) => {
-  console.log(action.type, action.payload);
   switch (action.type) {
     case "LOGIN": {
       return {
         ...state,
         ...action.payload.user,
-        inProgess: false
+        inProgess: false,
+        errors: action.error ? action.payload : null
       };
       //need to handle some error.
     }

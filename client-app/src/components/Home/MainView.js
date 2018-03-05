@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+
 //shared component
 import ArticleList from "../ArticleList";
 
-// const mapStateToProps = state => ({
-//   articles: state.home.articles
-// });
+const mapStateToProps = state => ({
+  articles: state.articles
+});
 
 const MainView = props => {
   return (
@@ -24,4 +25,4 @@ const MainView = props => {
   );
 };
 
-export default MainView;
+export default connect(mapStateToProps)(MainView);

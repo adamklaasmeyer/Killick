@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import MainView from "./MainView";
 import Banner from "./Banner";
+
 import services from "../../services";
 
 const mapStateToProps = state => ({
@@ -17,6 +18,7 @@ class Home extends Component {
   componentDidMount() {
     this.props.onLoad(services.Articles.all());
   }
+
   render() {
     return (
       <div className="home-page">
