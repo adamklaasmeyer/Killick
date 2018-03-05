@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import MainView from "./MainView";
 import Banner from "./Banner";
-
 import services from "../../services";
 
 const mapStateToProps = state => ({
@@ -24,7 +23,7 @@ class Home extends Component {
         <Banner appName={this.props.appName} />
         <div className="container page">
           <div className="row">
-            <MainView />
+            <MainView articles={this.props.articles} />
             <div className="col-md-3">
               <div className="sidebar">
                 <p>Popular Tags</p>
