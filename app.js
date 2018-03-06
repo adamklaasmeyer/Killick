@@ -14,7 +14,7 @@ require("dotenv").config();
 
 var app = express();
 
-//connect to our database mongoDB
+//connect to our database monogo
 if (isProduction) {
   mongoose.connect(process.env.MONGODB_URI);
 } else {
@@ -76,7 +76,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.json(err);
 });
 
 module.exports = app;
