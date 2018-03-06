@@ -1,9 +1,5 @@
 import axios from "axios";
 
-const API_ROOT = "/api";
-
-// let token = null;
-
 const axiosInstance = axios.create({
   baseURL: "/api",
   timeout: 1000,
@@ -20,8 +16,8 @@ const setToken = (token = null) =>
 const responseData = res => res.data;
 
 const requests = {
-  get: url => axios.get(`${API_ROOT}${url}`).then(responseData),
-  post: (url, body) => axios.post(`${API_ROOT}${url}`, body).then(responseData)
+  get: url => axiosInstance.get(`${url}`).then(responseData),
+  post: (url, body) => axiosInstance.post(`${url}`, body).then(responseData)
 };
 
 const Articles = {
@@ -29,6 +25,7 @@ const Articles = {
 };
 
 const Auth = {
+  currentUser: () => requests.get("/user"),
   login: (email, password) =>
     requests.post("/users/login", { user: { email, password } })
 };

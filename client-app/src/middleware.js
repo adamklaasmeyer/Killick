@@ -26,7 +26,6 @@ const localStorageMiddleware = store => next => action => {
       //set axios header auth instance
       services.setToken(action.payload.user.token);
     }
-    // services;
   }
   next(action);
 };
