@@ -1,6 +1,7 @@
 import services from "./services";
 
 const promiseMiddleware = store => next => action => {
+  console.log(action);
   if (isPromise(action.payload)) {
     store.dispatch({ type: "ASYNC_START", subtype: action.type });
     action.payload
@@ -10,6 +11,7 @@ const promiseMiddleware = store => next => action => {
       })
       .catch(error => {
         action.error = true;
+        console.log(error.response);
         action.payload = error.response.data.errors;
         store.dispatch(action);
       });
