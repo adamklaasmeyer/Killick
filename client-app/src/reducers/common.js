@@ -17,6 +17,8 @@ export default (state = defaultState, action) => {
       };
     case "REDIRECT":
       return { ...state, redirectTo: null };
+    case "LOGOUT":
+      return { ...state, redirectTo: "/", token: null, currentUser: null };
     case "LOGIN":
     case "REGISTER": {
       return {
