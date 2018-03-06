@@ -6,7 +6,7 @@ const ArticlePreview = ({ article }) => {
     <div className="article-preview">
       <div className="article-meta">
         <a>
-          <img src={article.author.image} alt="x" />
+          <img src={article.author.image} alt="avatar" />
         </a>
 
         <div className="info">

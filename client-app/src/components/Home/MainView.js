@@ -1,13 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
 
 //shared component
 import ArticleList from "../ArticleList";
-
-const mapStateToProps = state => ({
-  articles: state.articles
-});
-
 const MainView = props => {
   return (
     <div className="col-md-9">
@@ -25,4 +19,4 @@ const MainView = props => {
   );
 };
 
-export default connect(mapStateToProps)(MainView);
+export default MainView;
