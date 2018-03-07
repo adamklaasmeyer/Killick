@@ -27,7 +27,6 @@ export default (state = defaultState, action) => {
         currentUser: action.error ? null : action.payload.user,
         redirectTo: action.error ? null : "/"
       };
-      //need to handle some error.
     }
     default:
       return state;
