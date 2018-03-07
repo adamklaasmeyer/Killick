@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import services from "../services";
-import ListErrors from "./ListErrors";
+import services from "../../services";
+
+import SettingsForm from "./SettingsForm";
+import ListErrors from "../ListErrors";
 
 const mapStateToProps = state => {
   return {
-    ...state.settings,
     currentUser: state.common.currentUser
   };
 };
@@ -28,6 +29,10 @@ class Settings extends Component {
 
               <ListErrors errors={this.props.errors} />
 
+              <SettingsForm
+                currentUser={this.props.currentUser}
+                onSubmitForm={this.props.onSubmitForm}
+              />
               <hr />
 
               <button
