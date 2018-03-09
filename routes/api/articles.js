@@ -26,7 +26,7 @@ router.get("/", function(req, res, next) {
   //and send them back
   //db.getCollection('articles').find({})
   Article.find()
-    .limit(15)
+    .limit(55)
     .exec()
     .then(results => {
       return res.json({
@@ -88,6 +88,57 @@ router.post("/", auth.required, function(req, res, next) {
       return article.save().then(function() {
         return res.json({ article: article.toJSONFor() });
       });
+    })
+    .catch(next);
+});
+
+// update article
+router.put("/:article", auth.required, function(req, res, next) {
+  User.findById(req.payload.id).then(function(user) {
+    if (req.article.author._id.toString() === req.payload.id.toString()) {
+      if (typeof req.body.article.title !== "undefined") {
+        req.article.title = req.body.article.title;
+      }
+
+      if (typeof req.body.article.description !== "undefined") {
+        req.article.description = req.body.article.description;
+      }
+
+      if (typeof req.body.article.body !== "undefined") {
+        req.article.body = req.body.article.body;
+      }
+
+      if (typeof req.body.article.tagList !== "undefined") {
+        req.article.tagList = req.body.article.tagList;
+      }
+
+      req.article
+        .save()
+        .then(function(article) {
+          return res.json({ article: article.toJSONFor(user) });
+        })
+        .catch(next);
+    } else {
+      return res.sendStatus(403);
+    }
+  });
+});
+
+// delete article
+router.delete("/:article", auth.required, function(req, res, next) {
+  User.findById(req.payload.id)
+    .then(function(user) {
+      if (!user) {
+        return res.sendStatus(401);
+      }
+
+      if (req.article.author._id.toString() === req.payload.id.toString()) {
+        return req.article.remove().then(function() {
+          return res.sendStatus(204);
+        });
+      } else {
+        return res.sendStatus(403);
+      }
     })
     .catch(next);
 });
