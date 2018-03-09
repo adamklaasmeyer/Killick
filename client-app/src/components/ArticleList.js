@@ -25,7 +25,7 @@ const ArticleList = props => {
 
   //sweet articles
   return (
-    <div className="article-preview">
+    <div>
       {props.articles.map(article => (
         <div key={article.slug}>
           <ArticlePreview article={article} />

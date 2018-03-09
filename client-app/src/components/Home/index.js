@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: payload => dispatch({ type: "HOME_PAGE_LOADED", payload: payload })
+  onLoad: payload => dispatch({ type: "HOME_PAGE_LOADED", payload })
 });
 
 class Home extends Component {

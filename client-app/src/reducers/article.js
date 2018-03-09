@@ -6,13 +6,13 @@ export default (state = {}, action) => {
         article: action.payload[0].article,
         comments: action.payload[1].comments
       };
-    case "ADD_ARTICLE":
+    case "ADD_COMMENT":
       return {
         ...state,
         commentErrors: action.error ? action.payload.errors : null,
         comments: action.error
           ? null
-          : (state.comments || []).concat([action.payload.comment])
+          : [...state.comments, action.payload.comment]
       };
     default:
       return state;

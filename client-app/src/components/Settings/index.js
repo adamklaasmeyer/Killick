@@ -8,6 +8,7 @@ import ListErrors from "../ListErrors";
 
 const mapStateToProps = state => {
   return {
+    ...state.settings,
     currentUser: state.common.currentUser
   };
 };
